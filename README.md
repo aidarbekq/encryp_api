@@ -16,7 +16,8 @@ This API has two endpoints. One encrypts message, second decrypts encrypted mess
 
 **POST /receiveMessage**  
 `http://localhost:8082/api/receiveMessage`  
-{
+`{
 "message": "encrypted message"
-}
+}`  
+
 

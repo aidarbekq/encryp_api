@@ -22,14 +22,14 @@ public class MessageController {
     }
 
     @PostMapping("/sendMessage")
-    public ResponseEntity<?> sendMessage(@RequestBody MessageDTO messageDTO) throws Exception {
+    public ResponseEntity<MessageDTO> sendMessage(@RequestBody MessageDTO messageDTO) throws Exception {
         String message = messageDTO.getMessage();
         MessageDTO encryptedMessage = messageService.encryptMessage(message);
         return new ResponseEntity<>(encryptedMessage, HttpStatus.OK);
     }
 
     @PostMapping("/receiveMessage")
-    public ResponseEntity<?> receiveMessage(@RequestBody MessageDTO encryptedMessageDTO) throws Exception {
+    public ResponseEntity<MessageDTO> receiveMessage(@RequestBody MessageDTO encryptedMessageDTO) throws Exception {
         String encryptedMessage = encryptedMessageDTO.getMessage();
         MessageDTO decryptedMessage = messageService.decryptMessage(encryptedMessage);
         return new ResponseEntity<>(decryptedMessage, HttpStatus.OK);

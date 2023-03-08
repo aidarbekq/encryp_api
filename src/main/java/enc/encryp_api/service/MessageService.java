@@ -18,13 +18,11 @@ public class MessageService {
     @Autowired
     public MessageService() throws Exception {
         keyPair = KeyPairGeneratorRSA.generateRSAKeyPair();
-        System.out.println(keyPair);
     }
 
     public MessageDTO encryptMessage(String message) throws Exception {
         MessageDTO messageDTO = new MessageDTO();
         PublicKey publicKey = keyPair.getPublic();
-        System.out.println(publicKey);
         byte[] encryptedData = RSAEncryption.encryptData(message, publicKey);
         messageDTO.setMessage(Base64.getEncoder().encodeToString(encryptedData));
         return messageDTO;
@@ -33,7 +31,6 @@ public class MessageService {
     public MessageDTO decryptMessage(String encryptedMessage) throws Exception {
         MessageDTO messageDTO = new MessageDTO();
         PrivateKey privateKey = keyPair.getPrivate();
-        System.out.println(privateKey);
         byte[] encryptedData = Base64.getDecoder().decode(encryptedMessage);
         messageDTO.setMessage(RSAEncryption.decryptData(encryptedData, privateKey));
         return messageDTO;
